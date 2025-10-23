@@ -1,0 +1,130 @@
+AgentCore Runtime System Specifications Test
+Timestamp: 2025-10-23T15:34:12.204171
+Agent ARN: <redacted>
+Region: us-east-1
+================================================================================
+Connecting to: https://bedrock-agentcore.us-east-1.amazonaws.com/runtimes/<redacted>
+Initialising MCP session...
+MCP session initialised successfully
+
+============================================================
+AGENTCORE RUNTIME SYSTEM SPECIFICATIONS
+============================================================
+
+=== Complete System Information ===
+{
+  "platform": {
+    "system": "Linux",
+    "node": "localhost",
+    "release": "6.1.134-6.224.amzn2023.aarch64",
+    "version": "#1 SMP Tue May  6 16:28:22 UTC 2025",
+    "machine": "aarch64",
+    "processor": ""
+  },
+  "cpu": {
+    "logical_cores": 2,
+    "physical_cores": 2,
+    "current_frequency_mhz": "N/A",
+    "min_frequency_mhz": "N/A",
+    "max_frequency_mhz": "N/A",
+    "current_usage_percent": 0.0
+  },
+  "memory": {
+    "total_bytes": 8339812352,
+    "total_gb": 7.77,
+    "available_bytes": 7839768576,
+    "available_gb": 7.3,
+    "used_bytes": 500043776,
+    "used_gb": 0.47,
+    "usage_percent": 6.0
+  },
+  "storage": {
+    "total_bytes": 9407123456,
+    "total_gb": 8.76,
+    "used_bytes": 395001856,
+    "used_gb": 0.37,
+    "free_bytes": 8512163840,
+    "free_gb": 7.93,
+    "usage_percent": 4.2
+  }
+}
+
+=== Detailed CPU Information ===
+{
+  "logical_cores": 2,
+  "physical_cores": 2,
+  "current_usage_percent": 0.0,
+  "per_core_usage_percent": [
+    0.0,
+    0.0
+  ],
+  "frequency": {
+    "current_mhz": "N/A",
+    "min_mhz": "N/A",
+    "max_mhz": "N/A"
+  },
+  "load_average": [
+    0.134765625,
+    0.03125,
+    0.009765625
+  ],
+  "architecture": "aarch64",
+  "processor": ""
+}
+
+=== Detailed Memory Information ===
+{
+  "virtual_memory": {
+    "total_bytes": 8339812352,
+    "total_gb": 7.77,
+    "available_bytes": 7839404032,
+    "available_gb": 7.3,
+    "used_bytes": 500408320,
+    "used_gb": 0.47,
+    "free_bytes": 6752382976,
+    "free_gb": 6.29,
+    "usage_percent": 6.0,
+    "buffers_bytes": 30560256,
+    "cached_bytes": 1306255360
+  },
+  "swap_memory": {
+    "total_bytes": 0,
+    "total_gb": 0.0,
+    "used_bytes": 0,
+    "used_gb": 0.0,
+    "free_bytes": 0,
+    "free_gb": 0.0,
+    "usage_percent": 0.0
+  }
+}
+
+=== Detailed Storage Information ===
+{}
+
+=== File System Operations Test ===
+{
+  "current_directory": {
+    "writable": true,
+    "file_size_bytes": 49000,
+    "write_time_seconds": 0.0002,
+    "read_time_seconds": 0.0,
+    "content_matches": true
+  },
+  "temp_directory": {
+    "writable": true,
+    "temp_path": "/tmp",
+    "test_file_size": 19
+  },
+  "working_directory": {
+    "path": "/",
+    "exists": true,
+    "writable": true,
+    "readable": true
+  }
+}
+
+=== AWS Region ===
+Current AWS region: us-east-1
+
+
+Test completed successfully at 2025-10-23T15:34:23.633695
