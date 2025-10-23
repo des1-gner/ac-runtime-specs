@@ -519,7 +519,7 @@ This testing was conducted to support AWS Premium Support cases and validate the
 
 ## Disclaimer
 
-This testing was conducted for AWS Premium Support purposes. System specifications may change over time as AWS continues to optimise the AgentCore Runtime service. Always refer to official AWS documentation for the most current information.
+System specifications may change over time as AWS continues to optimise the AgentCore Runtime service. Always refer to official AWS documentation for the most current information.
 
 ---
 
