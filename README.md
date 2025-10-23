@@ -56,8 +56,10 @@ ac-runtime-specs/
 │   ├── system_info_mcp_server.py    # MCP server with system info tools
 │   └── requirements.txt             # Server dependencies
 ├── client/
-│   ├── test_system_info_client.py   # Test client
-│   └── requirements.txt             # Client dependencies
+│   ├── test_system_info_client.py   # Test client with output capture
+│   ├── requirements.txt             # Client dependencies
+│   └── output_YYYYMMDD_HHMMSS.txt   # Generated test output (timestamped)
+├── sample_output.txt                # Example output from test run
 └── README.md                        # This file
 ```
 
