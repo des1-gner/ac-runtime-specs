@@ -358,6 +358,26 @@ import asyncio
 from mcp import ClientSession
 from mcp_lambda.client.streamable_http_sigv4 import streamablehttp_client_with_sigv4
 import json
+import sys
+from datetime import datetime
+
+class OutputCapture:
+    def __init__(self, filename):
+        self.filename = filename
+        self.file = open(filename, 'w')
+        self.stdout = sys.stdout
+    
+    def write(self, text):
+        self.stdout.write(text)
+        self.file.write(text)
+        self.file.flush()
+    
+    def flush(self):
+        self.stdout.flush()
+        self.file.flush()
+    
+    def close(self):
+        self.file.close()
 
 def generate_mcp_url(agent_runtime_arn: str, region: str) -> str:
     encoded_arn = agent_runtime_arn.replace(':', '%3A').replace('/', '%2F')
@@ -368,13 +388,24 @@ async def test_system_info():
     agent_arn = "arn:aws:bedrock-agentcore:us-east-1:123456789012:runtime/system_info_mcp_server-abc123"
     region = "us-east-1"
     
-    mcp_url = generate_mcp_url(agent_arn, region)
-    print(f"Connecting to: {mcp_url}")
-
-    session = boto3.Session()
-    credentials = session.get_credentials()
+    # Capture output to file
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_capture = OutputCapture(f"output_{timestamp}.txt")
+    sys.stdout = output_capture
     
     try:
+        print(f"AgentCore Runtime System Specifications Test")
+        print(f"Timestamp: {datetime.now().isoformat()}")
+        print(f"Agent ARN: {agent_arn}")
+        print(f"Region: {region}")
+        print("=" * 80)
+        
+        mcp_url = generate_mcp_url(agent_arn, region)
+        print(f"Connecting to: {mcp_url}")
+
+        session = boto3.Session()
+        credentials = session.get_credentials()
+        
         async with streamablehttp_client_with_sigv4(
             url=mcp_url,
             service="bedrock-agentcore",
@@ -421,9 +452,15 @@ async def test_system_info():
                 result = await mcp_session.call_tool("get_aws_region", {})
                 print(f"Current AWS region: {result.content[0].text}")
                 
+                print(f"\n\nTest completed successfully at {datetime.now().isoformat()}")
+                
     except Exception as e:
         print(f"Error connecting to MCP server: {e}")
         raise
+    finally:
+        sys.stdout = output_capture.stdout
+        output_capture.close()
+        print(f"Output saved to: output_{timestamp}.txt")
 
 if __name__ == "__main__":
     asyncio.run(test_system_info())
